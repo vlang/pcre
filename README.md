@@ -8,10 +8,10 @@ It use bindings from the [PCRE](https://www.pcre.org/) library.
 ```v
 # examples/match_after.v
 
-import regex
+import pcre
 
 fn main() {
-  r := regex.new_regex('Match everything after this: (.+)', 0) or {
+  r := pcre.new_regex('Match everything after this: (.+)', 0) or {
     println('An error occured!')
     return
   }

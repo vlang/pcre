@@ -54,8 +54,8 @@ pub fn (r Regex) match_str(str string, pos int, options int) ?MatchData {
 	* options: the options as mentioned in the PCRE documentation
 */
 pub fn new_regex(source string, options int) ?Regex {
-	err := string{}
-	studyerr := string{}
+	err := ''
+	studyerr := ''
 	erroffset := 0
 	captures := 0
 

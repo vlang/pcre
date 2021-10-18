@@ -3,6 +3,13 @@
 A simple regex library for [V](https://github.com/vlang/v).
 It use bindings from the [PCRE](https://www.pcre.org/) library.
 
+## Installation
+
+Run:
+```bash
+v install pcre
+```
+
 ## Example
 
 ```v

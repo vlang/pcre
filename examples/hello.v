@@ -1,4 +1,4 @@
-import medvednikov.pcre
+import pcre
 
 fn main() {
 	r := pcre.new_regex('Hello', 0) or {

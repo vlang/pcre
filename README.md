@@ -6,11 +6,13 @@ you will need it installed as well.
 
 ## Prerequisites:
 
-You can install libpcre using your favourite package manager:
+You can install `libpcre` using your favourite package manager:
 
-Debian: apt-get install libpcre3-dev
+macOS: `brew install pcre`
 
-Fedora: yum install pcre-devel
+Debian: `apt-get install libpcre3-dev`
+
+Fedora: `yum install pcre-devel`
 
 
 ## Installation

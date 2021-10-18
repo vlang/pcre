@@ -1,16 +1,29 @@
 ## pcre
 
 A simple regex library for [V](https://github.com/vlang/v).
-It use bindings from the [PCRE](https://www.pcre.org/) library.
+It wraps the venerable [PCRE](https://www.pcre.org/) library, so 
+you will need it installed as well.
+
+## Prerequisites:
+
+You can install libpcre using your favourite package manager:
+
+Debian: apt-get install libpcre3-dev
+
+Fedora: yum install pcre-devel
+
 
 ## Installation
 
-Run:
-```bash
-v install pcre
-```
+You can install this module using `v install pcre`, and
+then use it with `import pcre` .
+
+When there are updates, you can update with `v update pcre` .
+
+You can also just run `v install pcre` again.
 
 ## Example
+(this can also be found in [examples/match_after.v](https://github.com/vlang/pcre/blob/master/examples/match_after.v))
 
 ```v
 # examples/match_after.v
@@ -70,4 +83,6 @@ Some examples are available in the [examples](examples/) directory.
 
 ## Contributors
 
-* [Shellbear](https://github.com/shellbear) - creator and maintainer
+* [Shellbear](https://github.com/shellbear) - creator
+* [Spytheman](https://github.com/spytheman) - maintainer
+* [JalonSolov](https://github.com/JalonSolov) - maintainer

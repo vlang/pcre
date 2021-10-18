@@ -26,7 +26,8 @@ pub fn (r Regex) match_str(str string, pos int, options int) ?MatchData {
 	}
 	ovector_size := (r.captures + 1) * 3
 	ovector := []int{len: ovector_size}
-	ret := C.pcre_exec(r.re, r.extra, str.str, str.len, pos, options, ovector.data, ovector_size)
+	ret := C.pcre_exec(r.re, r.extra, &char(str.str), str.len, pos, options, ovector.data,
+		ovector_size)
 	if ret <= 0 {
 		return error('No match!')
 	}
@@ -43,17 +44,22 @@ pub fn (r Regex) match_str(str string, pos int, options int) ?MatchData {
 // * source: the string representing the regex
 // * options: the options as mentioned in the PCRE documentation
 pub fn new_regex(source string, options int) ?Regex {
-	err := ''
-	studyerr := ''
+	mut perrbuf := &char(0)
+	mut pstudyerr := &char(0)
 	erroffset := 0
 	captures := 0
-	re := C.pcre_compile(source.str, options, &err, &erroffset, 0)
+	re := C.pcre_compile(&char(source.str), options, voidptr(&perrbuf), &erroffset, 0)
 	if isnil(re) {
-		return error('Failed to compile regex')
+		err := unsafe { cstring_to_vstring(perrbuf) }
+		return error('Failed to compile regex: $err')
 	}
-	extra := C.pcre_study(re, 0, &studyerr)
-	if studyerr.len != 0 {
-		return error('Failed to study regex	')
+	extra := C.pcre_study(re, 0, voidptr(&pstudyerr))
+	if extra == 0 {
+		if pstudyerr == 0 {
+			return error('no additional information')
+		}
+		err := unsafe { cstring_to_vstring(pstudyerr) }
+		return error('Failed to study regex: $err')
 	}
 	C.pcre_fullinfo(re, 0, C.PCRE_INFO_CAPTURECOUNT, &captures)
 	return Regex{re, extra, captures}

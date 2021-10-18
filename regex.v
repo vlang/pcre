@@ -4,10 +4,8 @@ struct Regex {
 pub:
 	// A pointer to pcre structure
 	re &C.pcre
-
 	// A pointer to pcre_extra structure
 	extra &C.pcre_extra
-
 	// The number of capture groups
 	captures int
 }
@@ -21,7 +19,8 @@ pub fn (r &Regex) free() {
 	}
 }
 
-/* Returns a MatchData structure containing matched strings and informations
+/*
+Returns a MatchData structure containing matched strings and informations
 	* str: the string to test
 	* pos: the position of the beginning of the string (default: 0)
 	* options: the options as mentioned in the PCRE documentation
@@ -49,7 +48,8 @@ pub fn (r Regex) match_str(str string, pos int, options int) ?MatchData {
 	}
 }
 
-/* Create a new regex
+/*
+Create a new regex
 	* source: the string representing the regex
 	* options: the options as mentioned in the PCRE documentation
 */

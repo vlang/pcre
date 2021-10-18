@@ -10,6 +10,7 @@ module pcre
 #include <pcre.h>
 
 struct C.pcre {}
+
 struct C.pcre_extra {}
 
 fn C.pcre_compile(byteptr, int, &byteptr, &int, voidptr) &C.pcre

@@ -5,9 +5,9 @@ pub:
 	// A pointer to pcre structure
 	re &C.pcre
 
-	ovector []int
-	str string
-	pos int
+	ovector    []int
+	str        string
+	pos        int
 	group_size int
 }
 
@@ -16,7 +16,8 @@ pub fn (m MatchData) valid_group(index int) bool {
 	return -m.group_size <= index && index < m.group_size
 }
 
-/* Returns a matched group based on index
+/*
+Returns a matched group based on index
 	* (.+) hello (.+) -> 'This is a simple hello world'
 	* get(0) -> This is a simple hello world
 	* get(1) -> This is a simple
@@ -30,7 +31,7 @@ pub fn (m MatchData) get(index_ int) ?string {
 		return error('Index out of bounds')
 	}
 
-	if  index < 0  {
+	if index < 0 {
 		index += m.group_size
 	}
 
@@ -45,15 +46,14 @@ pub fn (m MatchData) get(index_ int) ?string {
 	return substr
 }
 
-/* Returns all matched groups
+/*
+Returns all matched groups
 */
 pub fn (m MatchData) get_all() []string {
 	mut res := []string{}
 
-	for i := 1;; i++ {
-		substr := m.get(i) or {
-			break
-		}
+	for i := 1; true; i++ {
+		substr := m.get(i) or { break }
 		res << substr
 	}
 

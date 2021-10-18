@@ -6,13 +6,13 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout Latest V
+    - name: Checkout V
       uses: actions/checkout@v2
       with:
         repository: vlang/v
         path: v
 
-    - name: Checkout Coreutils
+    - name: Checkout pcre
       uses: actions/checkout@v2
       with:
         path: pcre
@@ -35,8 +35,8 @@ jobs:
     - name: Run tests
       run: v test pcre/
 
-    - name: Build example
+    - name: Build example with -cstrict
       run: v -cstrict pcre/examples/hello.v
 
-    - name: Build example with -prod
+    - name: Build example with -cstrict -prod
       run: v -cc gcc -cstrict -prod pcre/examples/hello.v

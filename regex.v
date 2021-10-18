@@ -12,7 +12,7 @@ pub:
 	captures int
 }
 
-pub fn (r Regex) free() {
+pub fn (r &Regex) free() {
 	if !isnil(r.re) {
 		C.pcre_free(r.re)
 	}

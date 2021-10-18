@@ -10,7 +10,7 @@ fn main() {
 		'This should match... hello',
 		'This could match... hello!',
 		'More than one hello.. hello',
-		'No chance of a match...'
+		'No chance of a match...',
 	]
 
 	for test in tests {

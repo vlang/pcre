@@ -17,9 +17,6 @@ jobs:
       with:
         path: pcre
 
-    - name: Install libpcre3-dev package
-      run: sudo apt-get install --quiet -y libpcre3-dev
-
     - name: Build V
       run: cd v && make && sudo ./v symlink && cd -
 

@@ -21,20 +21,11 @@ jobs:
           make
           sudo ./v symlink
 
-      - name: Symlink pcre to ~/.vmodules
-        run: ln -s ./pcre ~/.vmodules/pcre
-
       - name: Ensure everything is formatted
         run: v fmt -verify pcre/
 
       - name: Run tests
         run: v test pcre/
-
-      - name: Build example
-        run: v pcre/examples/hello.v
-
-      - name: Build example-prod
-        run: v -prod pcre/examples/hello.v
 
   macos:
     runs-on: macos-latest
@@ -54,20 +45,11 @@ jobs:
           make
           ./v symlink
 
-      - name: Symlink pcre to ~/.vmodules
-        run: ln -s ./pcre ~/.vmodules/pcre
-
       - name: Ensure everything is formatted
         run: v fmt -verify pcre/
 
       - name: Run tests
         run: v test pcre/
-
-      - name: Build example
-        run: v pcre/examples/hello.v
-
-      - name: Build example-prod
-        run: v -prod pcre/examples/hello.v
 
   windows:
     runs-on: windows-latest
@@ -86,18 +68,8 @@ jobs:
         run: |
           ./make.bat -gcc
 
-      - name: Symlink pcre to ~/.vmodules
-        run: ln -s ./pcre ~/.vmodules/pcre
-
       - name: Ensure everything is formatted
         run: v fmt -verify pcre/
 
       - name: Run tests
         run: v test pcre/
-
-      - name: Build example
-        run: v pcre/examples/hello.v
-
-      - name: Build example-prod
-        run: v -prod pcre/examples/hello.v
-

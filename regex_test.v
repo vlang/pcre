@@ -1,7 +1,7 @@
-import pcre
+module pcre
 
 fn test_match_after() {
-	r := pcre.new_regex('Match everything after this: (.+)', 0) or { panic('An error occured!') }
+	r := new_regex('Match everything after this: (.+)', 0) or { panic('An error occured!') }
 
 	m := r.match_str('Match everything after this: "I <3 VLang!"', 0, 0) or { panic('No match!') }
 

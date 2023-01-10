@@ -4,39 +4,109 @@ on: [push, pull_request]
 
 jobs:
   ubuntu:
-    strategy:
-      matrix:
-        os: [ ubuntu-latest, macos-latest, windows-latest ]
-    runs-on: ${{ matrix.os }}
+    runs-on: ubuntu-latest
     steps:
-    - name: Checkout V
-      uses: actions/checkout@v2
-      with:
-        repository: vlang/v
-        path: v
+      - name: Checkout V
+        uses: actions/checkout@v2
+        with:
+          repository: vlang/v
 
-    - name: Checkout pcre
-      uses: actions/checkout@v2
-      with:
-        path: pcre
+      - name: Checkout pcre
+        uses: actions/checkout@v2
+        with:
+          path: pcre
 
-    - name: Build V
-      run: cd v && make && sudo ./v symlink && cd -
+      - name: Build V
+        run: |
+          make
+          sudo ./v symlink
 
-    - name: V doctor
-      run: v doctor
+      - name: V doctor
+        run: v doctor
 
-    - name: Symlink pcre to ~/.vmodules
-      run: ln -s $(pwd)/pcre ~/.vmodules/pcre
+      - name: Symlink pcre to ~/.vmodules
+        run: ln -s $(pwd)/pcre ~/.vmodules/pcre
 
-    - name: Ensure everything is formatted
-      run: v fmt -verify pcre/
+      - name: Ensure everything is formatted
+        run: v fmt -verify pcre/
 
-    - name: Run tests
-      run: v test pcre/
+      - name: Run tests
+        run: v test pcre/
 
-    - name: Build example
-      run: v pcre/examples/hello.v
+      - name: Build example
+        run: v pcre/examples/hello.v
 
-    - name: Build example-prod
-      run: v -prod pcre/examples/hello.v
+      - name: Build example-prod
+        run: v -prod pcre/examples/hello.v
+
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout V
+        uses: actions/checkout@v2
+        with:
+          repository: vlang/v
+
+      - name: Checkout pcre
+        uses: actions/checkout@v2
+        with:
+          path: pcre
+
+      - name: Build V
+        run: |
+          make
+          ./v symlink
+
+      - name: V doctor
+        run: v doctor
+
+      - name: Symlink pcre to ~/.vmodules
+        run: ln -s $(pwd)/pcre ~/.vmodules/pcre
+
+      - name: Ensure everything is formatted
+        run: v fmt -verify pcre/
+
+      - name: Run tests
+        run: v test pcre/
+
+      - name: Build example
+        run: v pcre/examples/hello.v
+
+      - name: Build example-prod
+        run: v -prod pcre/examples/hello.v
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout V
+        uses: actions/checkout@v2
+        with:
+          repository: vlang/v
+
+      - name: Checkout pcre
+        uses: actions/checkout@v2
+        with:
+          path: pcre
+
+      - name: Build V
+        run: |
+          ./make.bat -gcc
+
+      - name: V doctor
+        run: v doctor
+
+      - name: Symlink pcre to ~/.vmodules
+        run: ln -s $(pwd)/pcre ~/.vmodules/pcre
+
+      - name: Ensure everything is formatted
+        run: v fmt -verify pcre/
+
+      - name: Run tests
+        run: v test pcre/
+
+      - name: Build example
+        run: v pcre/examples/hello.v
+
+      - name: Build example-prod
+        run: v -prod pcre/examples/hello.v
+

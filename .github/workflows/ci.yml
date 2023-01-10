@@ -36,4 +36,5 @@ jobs:
       run: v -cstrict pcre/examples/hello.v
 
     - name: Build example with -cstrict -prod
-      run: v -cc gcc -cstrict -prod pcre/examples/hello.v
+      working-directory: pcre/examples
+      run: v -cc gcc -cstrict -prod hello.v

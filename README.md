@@ -75,3 +75,4 @@ Some examples are available in the [examples](examples/) directory.
 * [Shellbear](https://github.com/shellbear) - creator
 * [Spytheman](https://github.com/spytheman) - maintainer
 * [JalonSolov](https://github.com/JalonSolov) - maintainer
+* [walkingdevel](https://github.com/walkingdevel) - maintainer

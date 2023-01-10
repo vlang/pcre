@@ -14,7 +14,7 @@ fn main() {
 	]
 
 	for test in tests {
-		println('\nTesting string: $test')
+		println('\nTesting string: ${test}')
 		m := r.match_str(test, 0, 0) or {
 			println('No match!')
 			continue

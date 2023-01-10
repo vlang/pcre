@@ -9,7 +9,8 @@ pub:
 
 pub fn (r &Regex) free() {
 	if !isnil(r.re) {
-		C.pcre_free(r.re)
+		// C.pcre_free is a function pointer, call a stub that calls it.
+		C.pcre_free_stub(r.re)
 	}
 	if !isnil(r.extra) {
 		C.pcre_free_study(r.extra)
@@ -51,7 +52,7 @@ pub fn new_regex(source string, options int) ?Regex {
 	re := C.pcre_compile(&char(source.str), options, voidptr(&perrbuf), &erroffset, 0)
 	if isnil(re) {
 		err := unsafe { cstring_to_vstring(perrbuf) }
-		return error('Failed to compile regex: $err')
+		return error('Failed to compile regex: ${err}')
 	}
 	extra := C.pcre_study(re, 0, voidptr(&pstudyerr))
 	if extra == 0 {
@@ -59,7 +60,7 @@ pub fn new_regex(source string, options int) ?Regex {
 			return error('no additional information')
 		}
 		err := unsafe { cstring_to_vstring(pstudyerr) }
-		return error('Failed to study regex: $err')
+		return error('Failed to study regex: ${err}')
 	}
 	C.pcre_fullinfo(re, 0, C.PCRE_INFO_CAPTURECOUNT, &captures)
 	return Regex{re, extra, captures}

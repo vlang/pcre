@@ -1,13 +1,23 @@
 module pcre
 
-// TODO: windows support
+#flag -I @VMODROOT/c
 
-#flag linux  -lpcre
-#flag darwin -lpcre
+#flag @VMODROOT/c/pcre_compile.c
+#flag @VMODROOT/c/pcre_get.c
+#flag @VMODROOT/c/pcre_exec.c
+#flag @VMODROOT/c/pcre_globals.c
+#flag @VMODROOT/c/pcre_study.c
+#flag @VMODROOT/c/pcre_ucd.c
+#flag @VMODROOT/c/pcre_tables.c
+#flag @VMODROOT/c/pcre_xclass.c
+#flag @VMODROOT/c/pcre_newline.c
+#flag @VMODROOT/c/pcre_fullinfo.c
+#flag @VMODROOT/c/pcre_ord2utf8.c
+#flag @VMODROOT/c/pcre_chartables.c
+#flag @VMODROOT/c/pcre_valid_utf8.c
+#flag @VMODROOT/c/pcre_free_stub.c
 
-#flag darwin -I /opt/homebrew/include/
-
-#include <pcre.h>
+#include "pcre.h"
 
 [typedef]
 struct C.pcre {}
@@ -34,4 +44,4 @@ fn C.pcre_version() byteptr
 fn C.pcre_free_substring_list(&byteptr)
 fn C.pcre_free_substring(byteptr)
 fn C.pcre_free_study(&C.pcre_extra)
-fn C.pcre_free(voidptr)
+fn C.pcre_free_stub(voidptr)

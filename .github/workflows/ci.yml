@@ -6,37 +6,70 @@ jobs:
   ubuntu:
     runs-on: ubuntu-latest
     steps:
-    - name: Checkout V
-      uses: actions/checkout@v2
-      with:
-        repository: vlang/v
-        path: v
+      - name: Checkout V
+        uses: actions/checkout@v2
+        with:
+          repository: vlang/v
 
-    - name: Checkout pcre
-      uses: actions/checkout@v2
-      with:
-        path: pcre
+      - name: Checkout pcre
+        uses: actions/checkout@v2
+        with:
+          path: pcre
 
-    - name: Install libpcre3-dev package
-      run: sudo apt-get install --quiet -y libpcre3-dev
+      - name: Build V
+        run: |
+          make
+          sudo ./v symlink
 
-    - name: Build V
-      run: cd v && make && sudo ./v symlink && cd -
+      - name: Run tests
+        run: v test pcre/
 
-    - name: V doctor
-      run: v doctor
+      - name: Compile lib
+        run: v -shared pcre/
 
-    - name: Symlink pcre to ~/.vmodules
-      run: ln -s $(pwd)/pcre ~/.vmodules/pcre
+  macos:
+    runs-on: macos-latest
+    steps:
+      - name: Checkout V
+        uses: actions/checkout@v2
+        with:
+          repository: vlang/v
 
-    - name: Ensure everything is formatted
-      run: v fmt -verify pcre/
+      - name: Checkout pcre
+        uses: actions/checkout@v2
+        with:
+          path: pcre
 
-    - name: Run tests
-      run: v test pcre/
+      - name: Build V
+        run: |
+          make
+          ./v symlink
 
-    - name: Build example with -cstrict
-      run: v -cstrict pcre/examples/hello.v
+      - name: Run tests
+        run: v test pcre/
 
-    - name: Build example with -cstrict -prod
-      run: v -cc gcc -cstrict -prod pcre/examples/hello.v
+      - name: Compile lib
+        run: v -shared pcre/
+
+  windows:
+    runs-on: windows-latest
+    steps:
+      - name: Checkout V
+        uses: actions/checkout@v2
+        with:
+          repository: vlang/v
+
+      - name: Checkout pcre
+        uses: actions/checkout@v2
+        with:
+          path: pcre
+
+      - name: Build V
+        run: |
+          .\make.bat -gcc
+
+      - name: Run tests
+        run: .\v.exe test pcre\
+
+      - name: Compile lib
+        run: .\v.exe -shared pcre\

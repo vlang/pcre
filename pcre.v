@@ -5,9 +5,7 @@ module pcre
 #flag linux  -lpcre
 #flag darwin -lpcre
 
-#flag darwin -I /opt/homebrew/include/
-
-#include <pcre.h>
+#include <./pcre.h>
 
 [typedef]
 struct C.pcre {}

@@ -32,9 +32,8 @@ jobs:
     - name: Run tests
       run: v test pcre/
 
-    - name: Build example with -cstrict
-      run: v -cstrict pcre/examples/hello.v
+    - name: Build example
+      run: v pcre/examples/hello.v
 
-    - name: Build example with -cstrict -prod
-      working-directory: pcre/examples
-      run: v -cstrict -prod hello.v
+    - name: Build example-prod
+      run: v -cstrict -prod pcre/examples/hello.v

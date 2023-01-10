@@ -3,6 +3,7 @@ module pcre
 #flag -I @VMODROOT/c
 
 #flag @VMODROOT/c/pcre_compile.c
+#flag @VMODROOT/c/pcre_fullinfo.c
 #flag @VMODROOT/c/pcre_get.c
 #flag @VMODROOT/c/pcre_exec.c
 #flag @VMODROOT/c/pcre_globals.c

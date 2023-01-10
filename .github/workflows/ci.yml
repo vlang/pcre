@@ -53,6 +53,8 @@ jobs:
 
   windows:
     runs-on: windows-latest
+    env:
+      VFLAGS: -cc gcc
     steps:
       - name: Checkout V
         uses: actions/checkout@v2

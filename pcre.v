@@ -1,11 +1,21 @@
 module pcre
 
 // TODO: windows support
-#flag -I@VMODROOT
+#flag -I @VMODROOT
 
-#flag windows -lpcre
-#flag linux  -lpcre
-#flag darwin -lpcre
+#flag @VMODROOT/pcre_compile.c
+#flag @VMODROOT/pcre_get.c
+#flag @VMODROOT/pcre_exec.c
+#flag @VMODROOT/pcre_globals.c
+#flag @VMODROOT/pcre_study.c
+#flag @VMODROOT/pcre_ucd.c
+#flag @VMODROOT/pcre_tables.c
+#flag @VMODROOT/pcre_xclass.c
+#flag @VMODROOT/pcre_newline.c
+#flag @VMODROOT/pcre_fullinfo.c
+#flag @VMODROOT/pcre_ord2utf8.c
+#flag @VMODROOT/pcre_chartables.c
+#flag @VMODROOT/pcre_valid_utf8.c
 
 #include <pcre.h>
 

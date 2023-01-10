@@ -4,8 +4,8 @@
 #define HAVE_SYS_STAT_H 1
 #define HAVE_SYS_TYPES_H 1
 /* #undef HAVE_UNISTD_H */
-#define HAVE_STDINT_H 1                                                   
-#define HAVE_INTTYPES_H 1    
+#define HAVE_STDINT_H 1
+#define HAVE_INTTYPES_H 1
 
 /* #undef HAVE_TYPE_TRAITS_H */
 /* #undef HAVE_BITS_TYPE_TRAITS_H */
@@ -26,7 +26,7 @@
 #define SUPPORT_PCRE8 1
 #define SUPPORT_PCRE16 1
 #define SUPPORT_PCRE32 1
-#define SUPPORT_JIT 1
+//#define SUPPORT_JIT 1
 #define SUPPORT_PCREGREP_JIT 1
 #define SUPPORT_UTF 1
 #define SUPPORT_UCP 1

@@ -66,10 +66,10 @@ jobs:
 
       - name: Build V
         run: |
-          ./make.bat -gcc
+          .\make.bat -gcc
 
       - name: Run tests
-        run: .\v.exe test pcre/
+        run: .\v.exe test pcre\
 
       - name: Compile lib
-        run: .\v.exe -shared pcre/
+        run: .\v.exe -shared pcre\

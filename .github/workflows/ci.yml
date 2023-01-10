@@ -21,11 +21,8 @@ jobs:
           make
           sudo ./v symlink
 
-      - name: V doctor
-        run: v doctor
-
       - name: Symlink pcre to ~/.vmodules
-        run: ln -s $(pwd)/pcre ~/.vmodules/pcre
+        run: ln -s ./pcre ~/.vmodules/pcre
 
       - name: Ensure everything is formatted
         run: v fmt -verify pcre/
@@ -57,11 +54,8 @@ jobs:
           make
           ./v symlink
 
-      - name: V doctor
-        run: v doctor
-
       - name: Symlink pcre to ~/.vmodules
-        run: ln -s $(pwd)/pcre ~/.vmodules/pcre
+        run: ln -s ./pcre ~/.vmodules/pcre
 
       - name: Ensure everything is formatted
         run: v fmt -verify pcre/
@@ -92,11 +86,8 @@ jobs:
         run: |
           ./make.bat -gcc
 
-      - name: V doctor
-        run: v doctor
-
       - name: Symlink pcre to ~/.vmodules
-        run: ln -s $(pwd)/pcre ~/.vmodules/pcre
+        run: ln -s ./pcre ~/.vmodules/pcre
 
       - name: Ensure everything is formatted
         run: v fmt -verify pcre/

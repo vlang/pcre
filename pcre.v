@@ -16,6 +16,7 @@ module pcre
 #flag @VMODROOT/pcre_ord2utf8.c
 #flag @VMODROOT/pcre_chartables.c
 #flag @VMODROOT/pcre_valid_utf8.c
+#flag @VMODROOT/pcre_free_stub.c
 
 #include "pcre.h"
 

@@ -636,6 +636,7 @@ PCRE_EXP_DECL pcre32_extra *pcre32_study(const pcre32 *, int, const char **);
 PCRE_EXP_DECL void pcre_free_study(pcre_extra *);
 PCRE_EXP_DECL void pcre16_free_study(pcre16_extra *);
 PCRE_EXP_DECL void pcre32_free_study(pcre32_extra *);
+PCRE_EXP_DECL void pcre_free_study(pcre_extra *);
 PCRE_EXP_DECL const char *pcre_version(void);
 PCRE_EXP_DECL const char *pcre16_version(void);
 PCRE_EXP_DECL const char *pcre32_version(void);
@@ -676,7 +677,5 @@ PCRE_EXP_DECL void pcre32_jit_free_unused_memory(void);
 
 #endif /* End of pcre.h */
 
-static inline void pcre_free_stub(void *re) {
-  pcre_free(re);
-}
-
+// pcre_free_stub.c
+PCRE_EXP_DECL void  pcre_free_stub(void *);

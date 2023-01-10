@@ -44,4 +44,4 @@ fn C.pcre_version() byteptr
 fn C.pcre_free_substring_list(&byteptr)
 fn C.pcre_free_substring(byteptr)
 fn C.pcre_free_study(&C.pcre_extra)
-fn C.pcre_free(voidptr)
+fn C.pcre_free_stub(voidptr)

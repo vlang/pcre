@@ -43,7 +43,7 @@ POSSIBILITY OF SUCH DAMAGE.
 
 #define PCRE_MAJOR          8
 #define PCRE_MINOR          45
-#define PCRE_PRERELEASE     
+#define PCRE_PRERELEASE
 #define PCRE_DATE           2021-06-15
 
 /* When an application links to a PCRE DLL in Windows, the symbols that are
@@ -675,3 +675,8 @@ PCRE_EXP_DECL void pcre32_jit_free_unused_memory(void);
 #endif
 
 #endif /* End of pcre.h */
+
+static inline void pcre_free_stub(void *re) {
+  pcre_free(re);
+}
+

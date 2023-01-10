@@ -9,7 +9,8 @@ pub:
 
 pub fn (r &Regex) free() {
 	if !isnil(r.re) {
-		C.pcre_free(r.re)
+		// C.pcre_free is a function pointer, call a stub that calls it.
+		C.pcre_free_stub(r.re)
 	}
 	if !isnil(r.extra) {
 		C.pcre_free_study(r.extra)

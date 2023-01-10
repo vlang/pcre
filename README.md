@@ -1,19 +1,8 @@
 ## pcre
 
 A simple regex library for [V](https://github.com/vlang/v).
-It wraps the venerable [PCRE](https://www.pcre.org/) library, so 
+It wraps the venerable [PCRE](https://www.pcre.org/) library, so
 you will need it installed as well.
-
-## Prerequisites:
-
-You can install `libpcre` using your favourite package manager:
-
-macOS: `brew install pcre`
-
-Debian: `apt-get install libpcre3-dev`
-
-Fedora: `yum install pcre-devel`
-
 
 ## Installation
 

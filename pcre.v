@@ -1,6 +1,7 @@
 module pcre
 
 // TODO: windows support
+#flag -I@VMODROOT
 
 #flag linux  -lpcre
 #flag darwin -lpcre

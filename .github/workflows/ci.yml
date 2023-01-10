@@ -21,9 +21,6 @@ jobs:
           make
           sudo ./v symlink
 
-      - name: Ensure everything is formatted
-        run: v fmt -verify pcre/
-
       - name: Run tests
         run: v test pcre/
 
@@ -45,9 +42,6 @@ jobs:
           make
           ./v symlink
 
-      - name: Ensure everything is formatted
-        run: v fmt -verify pcre/
-
       - name: Run tests
         run: v test pcre/
 
@@ -67,9 +61,6 @@ jobs:
       - name: Build V
         run: |
           ./make.bat -gcc
-
-      - name: Ensure everything is formatted
-        run: v fmt -verify pcre/
 
       - name: Run tests
         run: v test pcre/

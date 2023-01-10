@@ -24,6 +24,9 @@ jobs:
       - name: Run tests
         run: v test pcre/
 
+      - name: Compile lib
+        run: v -shared pcre/
+
   macos:
     runs-on: macos-latest
     steps:
@@ -45,6 +48,9 @@ jobs:
       - name: Run tests
         run: v test pcre/
 
+      - name: Compile lib
+        run: v -shared pcre/
+
   windows:
     runs-on: windows-latest
     steps:
@@ -63,4 +69,7 @@ jobs:
           ./make.bat -gcc
 
       - name: Run tests
-        run: v test pcre/
+        run: .\v.exe test pcre/
+
+      - name: Compile lib
+        run: .\v.exe -shared pcre/

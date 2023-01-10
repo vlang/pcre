@@ -17,7 +17,7 @@ module pcre
 #flag @VMODROOT/pcre_chartables.c
 #flag @VMODROOT/pcre_valid_utf8.c
 
-#include <pcre.h>
+#include "pcre.h"
 
 [typedef]
 struct C.pcre {}

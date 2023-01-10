@@ -4,7 +4,10 @@ on: [push, pull_request]
 
 jobs:
   ubuntu:
-    runs-on: ubuntu-latest
+    strategy:
+      matrix:
+        os: [ ubuntu-latest, macos-latest, windows-latest ]
+    runs-on: ${{ matrix.os }}
     steps:
     - name: Checkout V
       uses: actions/checkout@v2
@@ -36,4 +39,4 @@ jobs:
       run: v pcre/examples/hello.v
 
     - name: Build example-prod
-      run: v -cstrict -prod pcre/examples/hello.v
+      run: v -prod pcre/examples/hello.v

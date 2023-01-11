@@ -1,21 +1,8 @@
 module pcre
 
+#flag -DPCRE_STATIC
+#flag @VMODROOT/c/pcre.c
 #flag -I @VMODROOT/c
-
-#flag @VMODROOT/c/pcre_compile.c
-#flag @VMODROOT/c/pcre_get.c
-#flag @VMODROOT/c/pcre_exec.c
-#flag @VMODROOT/c/pcre_globals.c
-#flag @VMODROOT/c/pcre_study.c
-#flag @VMODROOT/c/pcre_ucd.c
-#flag @VMODROOT/c/pcre_tables.c
-#flag @VMODROOT/c/pcre_xclass.c
-#flag @VMODROOT/c/pcre_newline.c
-#flag @VMODROOT/c/pcre_fullinfo.c
-#flag @VMODROOT/c/pcre_ord2utf8.c
-#flag @VMODROOT/c/pcre_chartables.c
-#flag @VMODROOT/c/pcre_valid_utf8.c
-#flag @VMODROOT/c/pcre_free_stub.c
 
 #include "pcre.h"
 

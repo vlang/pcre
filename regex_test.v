@@ -17,3 +17,23 @@ fn test_match_after() {
 
 	r.free()
 }
+
+fn test_match_all() {
+	body := 'abcdef'
+	pattern := r'(.)'
+
+	mut re := new_regex(pattern, 0) or {
+		println('An error occured')
+		return
+	}
+
+	matches := re.match_str(body, 0, 0) or { return }
+
+	mut out := ''
+	for m in matches {
+		assert m.get_all().len == 1
+		out += m.get(0) or { 'error' }
+	}
+
+	assert out.str() == body.str()
+}

@@ -1,10 +1,12 @@
 module pcre
 
+[heap]
 struct Regex {
 pub:
 	re       &C.pcre       // A pointer to pcre structure
 	extra    &C.pcre_extra // A pointer to pcre_extra structure
 	captures int // The number of capture groups
+	options  int // Regex options
 }
 
 pub fn (r &Regex) free() {
@@ -21,7 +23,7 @@ pub fn (r &Regex) free() {
 // str: the string to test
 // pos: the position of the beginning of the string (default: 0)
 // options: the options as mentioned in the PCRE documentation
-pub fn (r Regex) match_str(str string, pos int, options int) ?MatchData {
+pub fn (r &Regex) match_str(str string, pos int, options int) ?MatchData {
 	if pos < 0 || pos >= str.len {
 		return error('Invalid position')
 	}
@@ -34,6 +36,7 @@ pub fn (r Regex) match_str(str string, pos int, options int) ?MatchData {
 	}
 	return MatchData{
 		re: r.re
+		regex: r
 		str: str
 		ovector: ovector
 		pos: pos
@@ -63,5 +66,5 @@ pub fn new_regex(source string, options int) ?Regex {
 		return error('Failed to study regex: ${err}')
 	}
 	C.pcre_fullinfo(re, 0, C.PCRE_INFO_CAPTURECOUNT, &captures)
-	return Regex{re, extra, captures}
+	return Regex{re, extra, captures, options}
 }

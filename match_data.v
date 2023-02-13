@@ -3,10 +3,12 @@ module pcre
 struct MatchData {
 pub:
 	re         &C.pcre // A pointer to pcre structure
+	regex      &Regex
 	ovector    []int
 	str        string
-	pos        int
 	group_size int
+mut:
+	pos int
 }
 
 // valid_group checks if group index is valid
@@ -45,4 +47,15 @@ pub fn (m MatchData) get_all() []string {
 		res << substr
 	}
 	return res
+}
+
+// next iterates over all pattern matches
+pub fn (mut m MatchData) next() ?MatchData {
+	if m0 := m.get(0) {
+		ret := m.regex.match_str(m.str, if m.pos == 0 { 0 } else { m.pos + m0.len - 1 },
+			m.regex.options) or { return none }
+		m.pos += m0.len
+		return ret
+	}
+	return none
 }

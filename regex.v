@@ -1,5 +1,6 @@
 module pcre
 
+[heap]
 struct Regex {
 pub:
 	re       &C.pcre       // A pointer to pcre structure
@@ -22,7 +23,7 @@ pub fn (r &Regex) free() {
 // str: the string to test
 // pos: the position of the beginning of the string (default: 0)
 // options: the options as mentioned in the PCRE documentation
-pub fn (r Regex) match_str(str string, pos int, options int) ?MatchData {
+pub fn (r &Regex) match_str(str string, pos int, options int) ?MatchData {
 	if pos < 0 || pos >= str.len {
 		return error('Invalid position')
 	}
@@ -35,7 +36,7 @@ pub fn (r Regex) match_str(str string, pos int, options int) ?MatchData {
 	}
 	return MatchData{
 		re: r.re
-		regex: &r
+		regex: r
 		str: str
 		ovector: ovector
 		pos: pos

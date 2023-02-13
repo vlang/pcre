@@ -1,7 +1,7 @@
-import pcre
+module pcre
 
 fn test_match_after() {
-	r := pcre.new_regex('Match everything after this: (.+)', 0) or { panic('An error occured!') }
+	r := new_regex('Match everything after this: (.+)', 0) or { panic('An error occured!') }
 
 	m := r.match_str('Match everything after this: "I <3 VLang!"', 0, 0) or { panic('No match!') }
 
@@ -19,7 +19,7 @@ fn test_match_after() {
 }
 
 fn test_match_str_iterator() {
-	mut re := pcre.new_regex(r'(.)', 0)? // match each of the letters
+	mut re := new_regex(r'(.)', 0)? // match each of the letters
 	matches := re.match_str('abcdef', 0, 0)?
 	mut out := []string{}
 	for m in matches {

@@ -22,7 +22,7 @@ pub fn (m MatchData) valid_group(index int) bool {
 // * get(1) -> This is a simple
 // * get(2) -> world
 // * get(3) -> Error!
-pub fn (m MatchData) get(index_ int) ?string {
+pub fn (m MatchData) get(index_ int) !string {
 	mut index := index_
 	if !m.valid_group(index) {
 		return error('Index out of bounds')

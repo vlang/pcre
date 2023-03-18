@@ -23,7 +23,7 @@ pub fn (r &Regex) free() {
 // str: the string to test
 // pos: the position of the beginning of the string (default: 0)
 // options: the options as mentioned in the PCRE documentation
-pub fn (r &Regex) match_str(str string, pos int, options int) ?MatchData {
+pub fn (r &Regex) match_str(str string, pos int, options int) !MatchData {
 	if pos < 0 || pos >= str.len {
 		return error('Invalid position')
 	}
@@ -47,7 +47,7 @@ pub fn (r &Regex) match_str(str string, pos int, options int) ?MatchData {
 // new_regex create a new regex
 // * source: the string representing the regex
 // * options: the options as mentioned in the PCRE documentation
-pub fn new_regex(source string, options int) ?Regex {
+pub fn new_regex(source string, options int) !Regex {
 	mut perrbuf := &char(0)
 	mut pstudyerr := &char(0)
 	erroffset := 0

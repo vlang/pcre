@@ -19,11 +19,11 @@ fn test_match_after() {
 }
 
 fn test_match_str_iterator() {
-	mut re := new_regex(r'(.)', 0)? // match each of the letters
-	matches := re.match_str('abcdef', 0, 0)?
+	mut re := new_regex(r'(.)', 0)! // match each of the letters
+	matches := re.match_str('abcdef', 0, 0)!
 	mut out := []string{}
 	for m in matches {
-		out << m.get(0)?
+		out << m.get(0)!
 		assert m.get_all().len == 1
 	}
 	assert out == ['a', 'b', 'c', 'd', 'e', 'f']

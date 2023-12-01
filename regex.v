@@ -1,6 +1,6 @@
 module pcre
 
-[heap]
+@[heap]
 struct Regex {
 pub:
 	re       &C.pcre       // A pointer to pcre structure

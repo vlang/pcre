@@ -6,10 +6,10 @@ module pcre
 
 #include "pcre.h"
 
-[typedef]
+@[typedef]
 struct C.pcre {}
 
-[typedef]
+@[typedef]
 struct C.pcre_extra {}
 
 fn C.pcre_compile(pattern byteptr, options int, const_perr &&char, perroroffset &int, ptable voidptr) &C.pcre

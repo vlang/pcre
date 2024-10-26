@@ -5,8 +5,8 @@ struct Regex {
 pub:
 	re       &C.pcre       // A pointer to pcre structure
 	extra    &C.pcre_extra // A pointer to pcre_extra structure
-	captures int // The number of capture groups
-	options  int // Regex options
+	captures int           // The number of capture groups
+	options  int           // Regex options
 }
 
 pub fn (r &Regex) free() {
@@ -35,11 +35,11 @@ pub fn (r &Regex) match_str(str string, pos int, options int) !MatchData {
 		return error('No match!')
 	}
 	return MatchData{
-		re: r.re
-		regex: r
-		str: str
-		ovector: ovector
-		pos: pos
+		re:         r.re
+		regex:      r
+		str:        str
+		ovector:    ovector
+		pos:        pos
 		group_size: r.captures + 1
 	}
 }

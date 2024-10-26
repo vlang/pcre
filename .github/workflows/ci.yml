@@ -27,6 +27,9 @@ jobs:
       - name: Compile lib
         run: v -shared pcre/
 
+      - name: Build examples
+        run: v should-compile-all pcre/examples/
+
   macos:
     runs-on: macos-latest
     steps:
@@ -50,6 +53,9 @@ jobs:
 
       - name: Compile lib
         run: v -shared pcre/
+
+      - name: Build examples
+        run: v should-compile-all pcre/examples/
 
   windows:
     runs-on: windows-latest
@@ -75,3 +81,6 @@ jobs:
 
       - name: Compile lib
         run: .\v.exe -shared pcre\
+
+      - name: Build examples
+        run: .\v.exe should-compile-all pcre/examples/

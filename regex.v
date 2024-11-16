@@ -44,6 +44,43 @@ pub fn (r &Regex) match_str(str string, pos int, options int) !MatchData {
 	}
 }
 
+
+
+// like match_str, match_str_many returns an array of MatchData structure containing all matched strings
+// useful for regex with multiple capture groups
+pub fn (r &Regex) match_str_many(str string, pos int, options int) ![]MatchData {
+	if pos < 0 || pos >= str.len {
+		return error('Invalid position')
+	}
+	ovector_size := (r.captures + 1) * 3
+	ovector := []int{len: ovector_size}
+	mut ret := C.pcre_exec(r.re, r.extra, &char(str.str), str.len, pos, options, ovector.data,
+		ovector_size)
+	if ret <= 0 {
+		return error('No match!')
+	}
+	mut match_datas := []MatchData{}
+	for {
+		mut new_pos := ovector[1]
+		if ret <= 0 {
+			break
+		}
+		match_data := MatchData{
+			re:         r.re
+			regex:      r
+			str:        str
+			ovector:    ovector.clone()
+			pos:        new_pos
+			group_size: r.captures + 1
+		}
+		match_datas << match_data
+		ret = C.pcre_exec(r.re, r.extra, &char(str.str), str.len, new_pos, options, ovector.data,
+			ovector_size)
+	}
+	return match_datas
+}
+
+
 // new_regex create a new regex
 // * source: the string representing the regex
 // * options: the options as mentioned in the PCRE documentation

@@ -1,7 +1,7 @@
 module pcre
 
 @[heap]
-struct Regex {
+pub struct Regex {
 pub:
 	re       &C.pcre       // A pointer to pcre structure
 	extra    &C.pcre_extra // A pointer to pcre_extra structure

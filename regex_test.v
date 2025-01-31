@@ -28,3 +28,9 @@ fn test_match_str_iterator() {
 	}
 	assert out == ['a', 'b', 'c', 'd', 'e', 'f']
 }
+
+fn test_match_possible_zero_length() {
+	mut re := pcre.new_regex(r'(.)*', 0) or { panic(err) }
+	m := re.match_str('Vlang', 0, 0) or { panic(err) }
+	assert m.get_all() == ['g']
+}

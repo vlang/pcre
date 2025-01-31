@@ -59,11 +59,10 @@ pub fn new_regex(source string, options int) !Regex {
 	}
 	extra := C.pcre_study(re, 0, voidptr(&pstudyerr))
 	if extra == 0 {
-		if pstudyerr == 0 {
-			return error('no additional information')
+		if pstudyerr != 0 {
+			err := unsafe { cstring_to_vstring(pstudyerr) }
+			return error('Failed to study regex: ${err}')
 		}
-		err := unsafe { cstring_to_vstring(pstudyerr) }
-		return error('Failed to study regex: ${err}')
 	}
 	C.pcre_fullinfo(re, 0, C.PCRE_INFO_CAPTURECOUNT, &captures)
 	return Regex{re, extra, captures, options}

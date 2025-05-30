@@ -48,8 +48,8 @@ pub fn (r &Regex) match_str(str string, pos int, options int) !MatchData {
 // * source: the string representing the regex
 // * options: the options as mentioned in the PCRE documentation
 pub fn new_regex(source string, options int) !Regex {
-	mut perrbuf := &char(0)
-	mut pstudyerr := &char(0)
+	mut perrbuf := &char(unsafe{nil})
+	mut pstudyerr := &char(unsafe{nil})
 	erroffset := 0
 	captures := 0
 	re := C.pcre_compile(&char(source.str), options, voidptr(&perrbuf), &erroffset, 0)
